@@ -21,6 +21,15 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        layer3 {
+            bindings = <&tog 3>;
+            key-positions = <37 38>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
