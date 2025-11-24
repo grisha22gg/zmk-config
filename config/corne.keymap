@@ -31,10 +31,10 @@
     };
 
     macros {
-        new_macro: new_macro {
+        text_format: new_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&none>;
+            bindings = <&kt LEFT_SHIFT &kp LEFT_ALT &kp F>;
             label = "NEW_MACRO";
         };
     };
@@ -74,10 +74,10 @@
 
         layer_1c {
             bindings = <
-&kp F5      &kp F9         &kp F10        &kp F11           &kp F12                &kp LS(F9)      &kp LC(MINUS)          &kp LC(LS(T))  &kp LS(ESCAPE)  &kp LC(PAUSE_BREAK)  &none           &kp BACKSPACE
-&kp RS(F9)  &kp LA(LS(F))  &kp AMPERSAND  &kp LC(KP_SLASH)  &kp LC(LS(KP_DIVIDE))  &kp DEL         &kp LC(LS(MINUS))      &none          &none           &kp HOME             &kp UP_ARROW    &kp END
-&kp LA(F2)  &kp F2         &kp LS(F2)     &kp LCTRL         &kp LEFT_SHIFT         &kp LEFT_ALT    &kp LC(RIGHT_BRACKET)  &kp TAB        &none           &kp LEFT             &kp DOWN_ARROW  &kp RIGHT_ARROW
-                                          &none             &none                  &kp SPACE       &kp RET                &kp LC(C)      &kp LC(V)
+&kp F5      &kp F9        &kp F10        &kp F11           &kp F12                &kp LS(F9)      &kp LC(MINUS)          &kp LC(LS(T))  &kp LS(ESCAPE)  &kp LC(PAUSE_BREAK)  &none           &kp BACKSPACE
+&kp RS(F9)  &text_format  &kp AMPERSAND  &kp LC(KP_SLASH)  &kp LC(LS(KP_DIVIDE))  &kp DEL         &kp LC(LS(MINUS))      &none          &none           &kp HOME             &kp UP_ARROW    &kp END
+&kp LA(F2)  &kp F2        &kp LS(F2)     &kp LCTRL         &kp LEFT_SHIFT         &kp LEFT_ALT    &kp LC(RIGHT_BRACKET)  &kp TAB        &none           &kp LEFT             &kp DOWN_ARROW  &kp RIGHT_ARROW
+                                         &none             &none                  &kp SPACE       &kp RET                &kp LC(C)      &kp LC(V)
             >;
         };
 
