@@ -32,7 +32,7 @@
     };
 
     macros {
-        text_format: new_macro {
+        text_format: text_format {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -43,10 +43,10 @@
                 <&macro_release>,
                 <&kp LEFT_ALT &kp LEFT_SHIFT>;
 
-            label = "NEW_MACRO";
+            label = "text_format";
         };
 
-        context: new {
+        context: context {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings =
@@ -57,7 +57,7 @@
                 <&macro_release>,
                 <&kp LCTRL>;
 
-            label = "NEW";
+            label = "context";
         };
 
         alt_f: alt_f {
