@@ -5,10 +5,10 @@
  *
  * Слои:
  *   0 BASE   — буквы
- *   1 LOWER  — цифры и символы (как в EN-раскладке)
+ *   1 LOWER  — цифры и символы, одинаковые в RU и EN
  *   2 ONEC   — горячие клавиши 1С (залипающий, левый средний большой палец)
  *   3 ADJ    — F-клавиши, медиа, BT, прошивка (комбо: оба крайних больших пальца)
- *   4 RUSYM  — символы, которые правильно печатаются при ВКЛЮЧЁННОЙ РУССКОЙ раскладке
+ *   4 SYM    — символы для BSL, одинаковые в RU и EN (Alt-коды, аналог раскладки Чистова)
  *              (удержание правого крайнего большого пальца; тап — смена языка)
  *
  * Нумерация клавиш:
@@ -207,6 +207,70 @@
             tap-ms = <10>;
             bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N9 &kp KP_N6>, <&macro_release &kp LALT>;
         };
+        // ; — Alt+059 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_semi: ac_semi {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N5 &kp KP_N9>, <&macro_release &kp LALT>;
+        };
+        // : — Alt+058 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_colon: ac_colon {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N5 &kp KP_N8>, <&macro_release &kp LALT>;
+        };
+        // " — Alt+034 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_dquot: ac_dquot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N3 &kp KP_N4>, <&macro_release &kp LALT>;
+        };
+        // . — Alt+046 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_dot: ac_dot {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N4 &kp KP_N6>, <&macro_release &kp LALT>;
+        };
+        // , — Alt+044 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_comma: ac_comma {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N4 &kp KP_N4>, <&macro_release &kp LALT>;
+        };
+        // ? — Alt+063 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_qmark: ac_qmark {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N6 &kp KP_N3>, <&macro_release &kp LALT>;
+        };
+        // / — Alt+047 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_fslh: ac_fslh {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N4 &kp KP_N7>, <&macro_release &kp LALT>;
+        };
+        // \ — Alt+092 на цифровом блоке (любая раскладка, нужен NumLock)
+        ac_bslh: ac_bslh {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N9 &kp KP_N2>, <&macro_release &kp LALT>;
+        };
     };
 
     keymap {
@@ -228,14 +292,15 @@
 
         layer_below {
             display-name = "Lower";
-            // | DEL  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC  |
-            // | NUM  |  1  |  2  |  3  |  4  |  5  |   |  -  |  =  |  `  |  [  |  ]  |  \|   |
-            // | CAPW |  6  |  7  |  8  |  9  |  0  |   |  _  |  +  |  ~  |  {  |  }  | RSHFT |
-            //                    | GUI |     | SPC |   | RET |     | BSPC |
+            // Символы одинаковые в RU и EN: (a) — через Alt-код, остальные совпадают в обеих раскладках.
+            // | DEL  |  !  | @(a) | #(a) | $(a) |  %  |   | ^(a) | &(a) |  *   |  (   |  )   | BSPC  |
+            // | NUM  |  1  |  2   |  3   |  4   |  5  |   |  -   |  =   | `(a) | [(a) | ](a) | |(a)  |
+            // | CAPW |  6  |  7   |  8   |  9   |  0  |   |  _   |  +   | ~(a) | {(a) | }(a) | RSHFT |
+            //                     | GUI  |      | SPC |   | RET  |      | BSPC |
             bindings = <
-&kp DELETE   &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
-&kp KP_NUM   &kp N1    &kp N2  &kp N3    &kp N4    &kp N5       &kp MINUS  &kp EQUAL  &kp GRAVE        &kp LBKT  &kp RBKT  &kp PIPE
-&caps_word   &kp N6    &kp N7  &kp N8    &kp N9    &kp N0       &kp UNDER  &kp PLUS   &kp TILDE        &kp LBRC  &kp RBRC  &kp RSHFT
+&kp DELETE   &kp EXCL  &ac_at  &ac_hash  &ac_dllr  &kp PRCNT    &ac_caret  &ac_amp    &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
+&kp KP_NUM   &kp N1    &kp N2  &kp N3    &kp N4    &kp N5       &kp MINUS  &kp EQUAL  &ac_grave        &ac_lbkt  &ac_rbkt  &ac_pipe
+&caps_word   &kp N6    &kp N7  &kp N8    &kp N9    &kp N0       &kp UNDER  &kp PLUS   &ac_tilde        &ac_lbrc  &ac_rbrc  &kp RSHFT
                                &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp BSPC
             >;
         };
@@ -271,17 +336,18 @@
         };
 
         layer_rusym {
-            display-name = "RuSym";
-            // Только при РУССКОЙ раскладке в ОС. (a) — через Alt-код, работает в любой.
-            // |      |  ;  |  :  |  "  | '(a) | |(a) |   | &(a) | #(a) | [(a) | ](a) | @(a) | BSPC |
-            // |      | <(a)| >(a)|  =  |  .   |  ,   |   |  -   |  (   |  )   |  ?   |  !   |  /   |
-            // | SHFT | {(a)| }(a)|  +  |  *   |  \   |   |  _   | $(a) | ^(a) | ~(a) | `(a) |  №   |
-            //                    |     |      |      |   |      |      | (сам)|
+            display-name = "Sym";
+            // Символы для BSL, одинаковые в RU и EN (Alt-коды, нужен NumLock).
+            // Исключение: № — только при русской раскладке.
+            // |      |  ;  |  :  |  "  |  '  |  |  |   |  &  |  #  |  [  |  ]  |  @  | BSPC |
+            // |      |  <  |  >  |  =  |  .  |  ,  |   |  -  |  (  |  )  |  ?  |  !  |  /   |
+            // | SHFT |  {  |  }  |  +  |  *  |  \  |   |  _  |  $  |  ^  |  ~  |  `  |  №   |
+            //                    |     |     |     |   |     |     | (сам) |
             bindings = <
-&trans     &kp LS(N4)  &kp LS(N6)  &kp LS(N2)  &ac_sqt          &ac_pipe        &ac_amp    &ac_hash   &ac_lbkt   &ac_rbkt    &ac_at     &kp BSPC
-&trans     &ac_lt      &ac_gt      &kp EQUAL   &kp FSLH         &kp LS(FSLH)    &kp MINUS  &kp LPAR   &kp RPAR   &kp LS(N7)  &kp EXCL   &kp LS(BSLH)
-&kp LSHFT  &ac_lbrc    &ac_rbrc    &kp PLUS    &kp KP_MULTIPLY  &kp BSLH        &kp UNDER  &ac_dllr   &ac_caret  &ac_tilde   &ac_grave  &kp LS(N3)
-                                   &trans      &trans           &trans          &trans     &trans     &trans
+&trans     &ac_semi  &ac_colon  &ac_dquot  &ac_sqt          &ac_pipe     &ac_amp    &ac_hash   &ac_lbkt   &ac_rbkt   &ac_at     &kp BSPC
+&trans     &ac_lt    &ac_gt     &kp EQUAL  &ac_dot          &ac_comma    &kp MINUS  &kp LPAR   &kp RPAR   &ac_qmark  &kp EXCL   &ac_fslh
+&kp LSHFT  &ac_lbrc  &ac_rbrc   &kp PLUS   &kp KP_MULTIPLY  &ac_bslh     &kp UNDER  &ac_dllr   &ac_caret  &ac_tilde  &ac_grave  &kp LS(N3)
+                                &trans     &trans           &trans       &trans     &trans     &trans
             >;
         };
     };
